@@ -39,7 +39,7 @@ namespace SPH
 	enum class DragMethods { None = 0, Macklin2014, Gissler2017, NumDragMethods };
 	enum class ElasticityMethods { None = 0, Becker2009, Peer2018, NumElasticityMethods };
 
-	enum class ParticleState { Active = 0, AnimatedByEmitter };
+	enum class ParticleState { Active = 0, AnimatedByEmitter, InActive };
 
 	/** \brief The fluid model stores the particle and simulation information 
 	*/
