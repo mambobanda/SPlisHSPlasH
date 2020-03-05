@@ -316,6 +316,17 @@ void FluidModel::initModel(const std::string &id, const unsigned int nFluidParti
 			m_particleState[i] = ParticleState::Active;
 		}
 	}
+	
+	#pragma omp parallel default(shared)
+	{
+		#pragma omp for schedule(static)  
+		for (int i = nFluidParticles; i < (int)(nFluidParticles + nMaxEmitterParticles); i++)
+		{
+			getPosition(i) = Vector3r(0.f, 0.f, 0.f);
+			m_particleState[i] = ParticleState::InActive;
+		}
+	}
+	
 	// set IDs for emitted particles
 	for (unsigned int i = nFluidParticles; i < (nFluidParticles + nMaxEmitterParticles); i++)
 	{
